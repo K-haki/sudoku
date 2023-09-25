@@ -1,0 +1,35 @@
+.sudoku-board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px; /* 调整九宫格的宽度 */
+  height: 300px; /* 调整九宫格的高度 */
+}
+
+.sudoku-row {
+  display: flex;
+  border: 1px solid #0b0b0b;
+}
+
+.sudoku-cell {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #0b0b0b;
+    box-sizing: border-box;
+}
+
+.sudoku-cell input {
+  width: 30%;
+  height: 30%;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+.game-wrapper {
+    display: flex;
+    border: 1px solid #0b0b0b;
+    width: 400px; /* 调整九宫格的宽度 */
+  height: 300px; /* 调整九宫格的高度 */
+  }
