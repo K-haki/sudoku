@@ -4,10 +4,15 @@ import requests
 import time
 import threading
 
+ans = []
+solu = []
 
-def shudu():
+def shudu(difficulty):
     generator = SudokuGenerator()
-    generator.generate('easy')
+    generator.generate(difficulty)
+    print("sudoku difficulty: ", difficulty)
+    ans.append(generator.board)
+    solu.append(generator.solution)
     with open('solution.txt', 'a') as f:
         for row in generator.solution:
             for i in range(9):
@@ -31,11 +36,11 @@ def single_thread():
 
 
 
-def multi_thread():
+def multi_thread(difficulty):
     threads = []
     for i in range(9):
         threads.append(
-            threading.Thread(target=shudu, args=())
+            threading.Thread(target=shudu, args=(difficulty,))
         )
     for thread in threads:
         thread.start()
@@ -118,7 +123,7 @@ class SudokuGenerator:
         cells = [(i, j) for i in range(9) for j in range(9)]
         random.shuffle(cells)
         for i, j in cells[:num_cells_to_remove]:
-            self.board[i][j] = 0
+            self.board[i][j] = ''
 
     def solve_sudoku(self):
         # 创建一个副本用于求解
@@ -177,7 +182,7 @@ class SudokuGenerator:
         return True
 
 
-def main():
+def main(difficulty):
     """
     start = time.time()
     single_thread()
@@ -191,11 +196,17 @@ def main():
     with open('shudu.txt', 'a') as f:
         f.seek(0)
         f.truncate()
-    multi_thread()
+    multi_thread(difficulty)
     end = time.time()
-    print("Multi Thread Crawling Cost", end - start, "seconds.")
+    print("new sudoku generated!")
+    # print("Multi Thread Crawling Cost", end - start, "seconds.")
 
 
 if __name__ == "__main__":
     main()
-
+    """
+    for item in ans:
+        for i in item:
+            print(i)
+        print('\n')
+    """
