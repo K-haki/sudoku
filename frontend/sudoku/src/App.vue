@@ -24,6 +24,7 @@
         :value="item.value">
       </el-option>
     </el-select>
+    <button style="top: 20%;" class="button" @click="b_solve">并发求解</button>
     <button style="top: 60%;" class="button" @click="tips">提示</button>
     <button style="top: 70%;" class="button" @click="hand_in">提交</button>
     <button style="top: 80%;" class="button" @click="look_ans">查看答案</button>
@@ -52,6 +53,7 @@ export default {
     return {
       responseData: '',
       responsetip: [],
+      response_solve: [],
       board: [[[]]],
       numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       list: [1, 2, 3],
@@ -145,6 +147,25 @@ export default {
       axios.get('http://127.0.0.1:5000/solution')
       .then(response => {
         this.responseData = response.data;
+        for (let i = 0; i < 9; i++){
+          this.board[i] = this.responseData[i];
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    },
+    b_solve() {
+      this.$alert('正在为您并发求解数独，请稍等...', {
+        confirmButtonText: '好嘞',
+      });
+      this.stopTimer();
+      axios.get('http://127.0.0.1:5000/solve')
+      .then(response => {
+        this.responseData = response.data;
+        this.$alert('已经成功求解数独，请查看！', {
+          confirmButtonText: '好嘞',
+        });
         for (let i = 0; i < 9; i++){
           this.board[i] = this.responseData[i];
         }

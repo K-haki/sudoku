@@ -3,9 +3,22 @@ import random
 import requests
 import time
 import threading
+import sudoku_solve
 
 ans = []
 solu = []
+solve_board = []
+
+def shudu_solve(a):
+    for i in range(9):
+        for j in range(9):
+            if a[i][j] == '':
+                a[i][j] = 0
+    x = sudoku_solve.main(a)
+    # print(x)
+    solve_board.append(x)
+    
+
 
 def shudu(difficulty):
     generator = SudokuGenerator()
@@ -35,6 +48,22 @@ def single_thread():
         shudu()
 
 
+
+def multi_solve():
+    threads = []
+    for i in range(9):
+        threads.append(
+            threading.Thread(target=shudu_solve, args=(ans[i],))
+        )
+    for thread in threads:
+        thread.start()
+        # length = len(threading.enumerate())
+        # print('当前运行的线程数为：%d' % length)
+
+    for thread in threads:
+        thread.join()
+    
+    return solve_board
 
 def multi_thread(difficulty):
     threads = []
@@ -148,7 +177,7 @@ class SudokuGenerator:
                 if self._solve(board):
                     return True
 
-                board[row][col] = 0
+                # board[row][col] = 0
 
         return False
 
@@ -203,10 +232,6 @@ def main(difficulty):
 
 
 if __name__ == "__main__":
-    main()
-    """
-    for item in ans:
-        for i in item:
-            print(i)
-        print('\n')
-    """
+    main('hard')
+    multi_solve()
+    # print("lenght = ", len(solve_board))

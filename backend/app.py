@@ -32,5 +32,9 @@ def get_ans():
     global solution
     return jsonify(solution)
 
+@app.route('/solve')
+def get_solve():
+    return jsonify(genrate_shudo.multi_solve())
+
 if __name__ == '__main__':
     app.run()
