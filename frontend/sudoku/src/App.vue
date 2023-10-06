@@ -24,7 +24,8 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <button style="top: 20%;" class="button" @click="b_solve">并发求解</button>
+    <button style="top: 10%;" class="button" @click="reset">输入待解题目</button>
+    <button style="top: 20%;" class="button" @click="new_solve">并发求解</button>
     <button style="top: 60%;" class="button" @click="tips">提示</button>
     <button style="top: 70%;" class="button" @click="hand_in">提交</button>
     <button style="top: 80%;" class="button" @click="look_ans">查看答案</button>
@@ -51,6 +52,7 @@ export default {
   },
   data() {
     return {
+      err: 'nonono',  
       responseData: '',
       responsetip: [],
       response_solve: [],
@@ -139,6 +141,89 @@ export default {
         this.board[i] = this.responseData[i];
       }
     },
+    reset() {
+        this.responseData = [[[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],],
+          [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],]];
+    },
     look_ans() {
       this.$alert('您的解题用时为：' + this.timer + 's' + '\n但是你没解出来（嘲笑！）', '偷看答案是吧！逮到你了', {
         confirmButtonText: '好嘞',
@@ -161,6 +246,25 @@ export default {
       });
       this.stopTimer();
       axios.get('http://127.0.0.1:5000/solve')
+      .then(response => {
+        this.responseData = response.data;
+        this.$alert('已经成功求解数独，请查看！', {
+          confirmButtonText: '好嘞',
+        });
+        for (let i = 0; i < 9; i++){
+          this.board[i] = this.responseData[i];
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    },
+    new_solve() {
+      this.$alert('正在为您并发求解数独，请稍等...', {
+        confirmButtonText: '好嘞',
+      });
+      this.stopTimer();
+      axios.post('http://127.0.0.1:5000/new_solve', {data: this.board})
       .then(response => {
         this.responseData = response.data;
         this.$alert('已经成功求解数独，请查看！', {
@@ -204,7 +308,7 @@ export default {
     inputChange($event, i, j, num) {
       const value = Number($event.target.value);
       if (isNaN(value)) {
-        this.$set(this.board[num][i], j, '');
+        this.$set(this.board[num][i], j, ''); 
         this.$alert('请输入1-9中的某个数字！', '警告！小朋友要听话哟！', {
           confirmButtonText: '好嘞',
         });
@@ -215,9 +319,19 @@ export default {
         });
       } else if ((value < 10) && (value > 0)) {
         this.$set(this.board[num][i], j, value);
+        if (this.isValid(num, i, j, value) == 0){
+          this.$alert('这个位置不应该填这个哦！', '警告！小朋友要听话哟！', {
+            confirmButtonText: '好嘞',
+          });
+        }
       } else {
         // eslint-disable-next-line max-len
         this.$set(this.board[num][i], j, Number(String(value).substring(String(value).length - 1, String(value).length)));
+        if (this.isValid(num, i, j, Number(String(value).substring(String(value).length - 1, String(value).length))) == 0){
+          this.$alert('这个位置不应该填这个哦！', '警告！小朋友要听话哟！', {
+            confirmButtonText: '好嘞',
+          });
+        }
       }
     },
     tips() {
@@ -236,6 +350,27 @@ export default {
       });
       
     },
+    isValid(num, i, j, value) {  
+      for (let row = 0; row < 9; row++) {  
+        if (this.board[num][row][j] == value && row != i) {  
+          this.err = num + ' ' + row + ' ' + j + ' ' + value;
+          return 0;  
+        }  
+      }
+      for (let col = 0; col < 9; col++) {  
+        if (this.board[num][i][col] == value && col != j) {  
+          return 0;  
+        }  
+      }
+      for (let row = Math.floor(i / 3) * 3; row < Math.floor(i / 3) * 3 + 3; row++) {  
+        for (let col = Math.floor(j / 3) * 3; col < Math.floor(j / 3) * 3 + 3; col++) {  
+          if (this.board[num][row][col] == value && row != i && col != j) {  
+            return 0;  
+          }  
+        }  
+      }
+      return 1;
+    },  
     startTimer() {  
       if (this.intervalId === null) {  
         this.intervalId = setInterval(() => {  
